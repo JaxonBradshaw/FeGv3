@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MainTbl>
+
+<h4>Filter By:</h4>
+<br />
+
+@*Filter by Low NS Pair*@
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Low NS Pair
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" value="LowNS">
+        @foreach (var x in Model.Select(x => x.LowPairNs).Distinct().OrderBy(x => x).ToList())
+        {
+            <a class="dropdown-item" asp-action="Index" asp-controller="MainTbls"
+               asp-route-option="LowNS" asp-route-search="@x" method="get">@x</a><br />
+        }
+    </div>
+</div>
+<br />
+
+@*Filter by Low EW Pair*@
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Low EW Pair
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" value="LowEW">
+        @foreach (var x in Model.Select(x => x.LowPairEw).Distinct().OrderBy(x => x).ToList())
+        {
+            <a class="dropdown-item" asp-action="Index" asp-controller="MainTbls"
+               asp-route-option="LowEW" asp-route-search="@x" method="get">@x</a><br />
+        }
+    </div>
+</div>
+<br />
+
+@*Filter by Burial Number*@
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Burial Number
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" value="BurialNumber">
+        @foreach (var x in Model.Select(x => x.BurialNumber).Distinct().OrderBy(x => x).ToList())
+        {
+            <a class="dropdown-item" asp-action="Index" asp-controller="MainTbls"
+               asp-route-option="BurialNumber" asp-route-search="@x" method="get">@x</a><br />
+        }
+    </div>
+</div>
+<br />
+
+@*Filter by Gender*@
+@*<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Gender
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" value="BurialNumber">
+        @foreach (var x in Model.Select(x => x.GenderGe).Distinct().OrderBy(x => x).ToList())
+        {
+            <a class="dropdown-item" asp-action="Index" asp-controller="MainTbls"
+               asp-route-option="Gender" asp-route-search="@x" method="get">@x</a><br />
+        }
+    </div>
+</div>*@

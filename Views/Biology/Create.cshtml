@@ -1,0 +1,107 @@
+﻿@model Biology
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Biology</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BurialId" class="control-label"></label>
+                <select asp-for="BurialId" class ="form-control" asp-items="ViewBag.BurialId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BioId" class="control-label"></label>
+                <input asp-for="BioId" class="form-control" />
+                <span asp-validation-for="BioId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HairTaken" class="control-label"></label>
+                <input asp-for="HairTaken" class="form-control" />
+                <span asp-validation-for="HairTaken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoftTissueTaken" class="control-label"></label>
+                <input asp-for="SoftTissueTaken" class="form-control" />
+                <span asp-validation-for="SoftTissueTaken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BoneTaken" class="control-label"></label>
+                <input asp-for="BoneTaken" class="form-control" />
+                <span asp-validation-for="BoneTaken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToothTaken" class="control-label"></label>
+                <input asp-for="ToothTaken" class="form-control" />
+                <span asp-validation-for="ToothTaken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TextileTaken" class="control-label"></label>
+                <input asp-for="TextileTaken" class="form-control" />
+                <span asp-validation-for="TextileTaken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescriptionOfTaken" class="control-label"></label>
+                <input asp-for="DescriptionOfTaken" class="form-control" />
+                <span asp-validation-for="DescriptionOfTaken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArtifactFound" class="control-label"></label>
+                <input asp-for="ArtifactFound" class="form-control" />
+                <span asp-validation-for="ArtifactFound" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstimateAge" class="control-label"></label>
+                <input asp-for="EstimateAge" class="form-control" />
+                <span asp-validation-for="EstimateAge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstimateLivingStature" class="control-label"></label>
+                <input asp-for="EstimateLivingStature" class="form-control" />
+                <span asp-validation-for="EstimateLivingStature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToothAttrition" class="control-label"></label>
+                <input asp-for="ToothAttrition" class="form-control" />
+                <span asp-validation-for="ToothAttrition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToothEruption" class="control-label"></label>
+                <input asp-for="ToothEruption" class="form-control" />
+                <span asp-validation-for="ToothEruption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PathologyAnomalies" class="control-label"></label>
+                <input asp-for="PathologyAnomalies" class="form-control" />
+                <span asp-validation-for="PathologyAnomalies" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EpiphysealUnion" class="control-label"></label>
+                <input asp-for="EpiphysealUnion" class="form-control" />
+                <span asp-validation-for="EpiphysealUnion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Burialsampletaken" class="control-label"></label>
+                <input asp-for="Burialsampletaken" class="form-control" />
+                <span asp-validation-for="Burialsampletaken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="MainTbls">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

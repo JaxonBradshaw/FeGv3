@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+@model IEnumerable<UserInfo>
+
+<h2>Login</h2>
+<br />
+
+<form asp-action="Login" method="post">
+    <label>Username: </label>
+    <input name="username" value="" />
+    <br />
+
+    <label>Password: </label>
+    <input name="password" value="" />
+    <br />
+
+    <button type="submit">Login</button>
+</form>

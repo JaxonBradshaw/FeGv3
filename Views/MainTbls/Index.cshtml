@@ -1,0 +1,123 @@
+﻿@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="text-left col-6">
+        <h1>Mummies</h1>
+    </div>       
+
+    <div class="form-group text-right col-6">
+        <form asp-action="Index" asp-controller="MainTbls" method="get">
+            <label for="option">Search by:</label>
+            <select name="option" id="option">
+                <option value="Select">Select One</option>
+                <option value="LowNS">Low NS Location</option>
+                <option value="LowEW">Low EW Location</option>
+                <option value="BurialNumber">Burial Number</option>
+                @*<option value="Gender">Gender</option>*@
+            </select>
+
+            <input class="form-control" type="text" placeholder="Search" name="search" id="search">
+            <button class="btn btn-primary" name="submit" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@*Want it to look like this:
+  N 190/200 E 40/50 SE #9*@
+<div class="row">
+    <div class="col-2">
+        <vc:filter />
+    </div>
+
+    <div class="col-10">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Location/Burial#
+                    </th>
+                    <th>
+                        Burial Depth
+                    </th>
+                    <th>
+                        Burial Situation
+                    </th>
+                    <th>
+                        Length of Remains
+                    </th>
+                    <th>
+                        Gender GE
+                    </th>
+                    <th>
+                        Year Found
+                    </th>
+                    <th>
+                        Head Direction
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            @*Want it to look like this:
+            N 190/200 E 40/50 SE #9*@
+
+            <tbody>
+                @foreach (var item in Model.MainTbls)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BurialLocationNs) @Html.DisplayFor(modelItem => item.LowPairNs)/@Html.DisplayFor(modelItem => item.HighPairNs)
+                            @Html.DisplayFor(modelItem => item.BurialLocationEw) @Html.DisplayFor(modelItem => item.LowPairEw)/@Html.DisplayFor(modelItem => item.HighPairEw)
+                            @Html.DisplayFor(modelItem => item.BurialSubplot) #@Html.DisplayFor(modelItem => item.BurialNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BurialDepth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BurialSituation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LengthOfRemains)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GenderGe)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.YearFound)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HeadDirection)
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.BurialId">Edit</a>
+                            }
+                            <form asp-action="BurialDetails" asp-controller="Home" method="get">
+                                <input hidden value="@item.BurialId" name="burialId" />
+                                <input type="submit" value="Details" />
+                            </form>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.BurialId">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div page-info="@Model.PaginationModel" page-class-normal="btn btn-outline-primary mx-1" page-class-selected="btn btn-primary mx-1" 
+     page-url-search="@Model.Search"
+     page-url-option="@Model.Option">
+</div>

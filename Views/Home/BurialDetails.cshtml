@@ -1,0 +1,514 @@
+﻿@{
+    ViewData["Title"] = "Mummy Details";
+}
+
+@model BurialDetailsViewModel
+
+<div class="container">
+    <div>
+        <h1 class="display-1">Mummy Info</h1>
+        <p><span class="text-muted">Location:</span> @Model.BurialInfo.LowPairNs/@Model.BurialInfo.HighPairNs @Model.BurialInfo.BurialLocationNs @Model.BurialInfo.LowPairEw/@Model.BurialInfo.HighPairEw @Model.BurialInfo.BurialSubplot #@Model.BurialInfo.BurialNumber</p>
+        @if (!System.String.IsNullOrEmpty(Model.BurialInfo.Area))
+        {
+            <p><span class="text-muted">Area:</span> @Model.BurialInfo.Area</p>
+        }
+        <p>Cluster: @(!System.String.IsNullOrEmpty(Model.BurialInfo.Cluster) ? Model.BurialInfo.Cluster : "Not Recorded")</p>
+        @if (System.String.IsNullOrEmpty(Model.BurialInfo.DateFound) || Model.BurialInfo.DateFound.Length < 2)
+        {
+            <p>Year Found: @(Model.BurialInfo.YearFound != null ? Model.BurialInfo.YearFound : "Not Recorded")</p>
+            <p>Month Found: @(Model.BurialInfo.MonthFound != null ? Model.BurialInfo.MonthFound : "Not Recorded")</p>
+            <p>Day Found: @(Model.BurialInfo.DayFound != null ? Model.BurialInfo.DayFound : "Not Recorded")</p>
+        }
+        else
+        {
+            <p>Date Found: @Model.BurialInfo.DateFound</p>
+        }
+        <p>Photos? (Y or N): @(Model.BurialInfo.Photos)</p>
+
+        <h2>Physical Location and Details of Body</h2>
+        <p>Measurements are from the edge of the sqaure to the body</p>
+        <ul>
+            <li>
+                <p><span class="text-muted">Depth:</span> @Model.BurialInfo.BurialDepth m</p>
+            </li>
+            <li>
+                <p><span class="text-muted">South Edge to Feet:</span> @Model.BurialInfo.SouthToFeet m</p>
+            </li>
+            <li>
+                <p><span class="text-muted">South Edge to Head:</span> @Model.BurialInfo.SouthToHead m</p>
+            </li>
+            <li>
+                <p><span class="text-muted">West to Feet:</span> @Model.BurialInfo.WestToFeet m</p>
+            </li>
+            <li>
+                <p><span class="text-muted">West to Head:</span> @Model.BurialInfo.WestToHead m</p>
+            </li>
+            @if (!System.String.IsNullOrEmpty(Model.BurialInfo.HeadDirection))
+            {
+                <li>
+                    <p><span class="text-muted">Head Direction:</span> @Model.BurialInfo.HeadDirection</p>
+                </li>
+            }
+            @if (Model.BurialInfo.LengthOfRemains != null)
+            {
+                <li>
+                    <p><span class="text-muted">Length of Remains:</span> @Model.BurialInfo.LengthOfRemains m</p>
+                </li>
+
+            }
+            @if (!System.String.IsNullOrEmpty(Model.BurialInfo.PreservationIndex))
+            {
+                <li>
+                    <p><span class="text-muted">Preservation Index:</span> @Model.BurialInfo.PreservationIndex</p>
+                </li>
+            }
+            <li>
+                @if (Model.BurialInfo.DateOnSkull == null && System.String.IsNullOrEmpty(Model.BurialInfo.DateOnSkull))
+                {
+                    <ul>
+                        <li>
+                            @if (Model.BurialInfo.YearOnSkull != null)
+                            {
+                                @:Year on Skull: @Model.BurialInfo.YearOnSkull
+                            }
+                            else
+                            {
+                                @:Year on Skull: Not Recorded
+                            }
+                        </li>
+                        <li>
+                            @if (Model.BurialInfo.MonthOnSkull != null)
+                            {
+                                @:Month on Skull: @Model.BurialInfo.MonthOnSkull
+                            }
+                            else
+                            {
+                                @:Month on Skull: Not Recorded
+                            }
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                <li>
+                    Date on Skull: @Model.BurialInfo.DateOnSkull
+                </li>
+                <li>
+                    <p>Skull At Magazine: @(!System.String.IsNullOrEmpty(Model.BurialInfo.BodyAnalysis) ? "Yes" : "No")</p>
+                </li>
+                <li>
+                    <p>Sex based on skull: @(!System.String.IsNullOrEmpty(Model.BurialInfo.SexSkull2018) ? Model.BurialInfo.SexSkull2018 : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Age based on skull: @(!System.String.IsNullOrEmpty(Model.BurialInfo.AgeSkull2018) ? Model.BurialInfo.AgeSkull2018 : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Skull Trauma: @(!System.String.IsNullOrEmpty(Model.BurialInfo.SkullTrauma) ? Model.BurialInfo.SkullTrauma : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Postcrania Trauma: @(!System.String.IsNullOrEmpty(Model.BurialInfo.PostcraniaTrauma) ? Model.BurialInfo.PostcraniaTrauma : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Postcrania Trauma 1: @(!System.String.IsNullOrEmpty(Model.BurialInfo.PostcraniaTrauma1) ? Model.BurialInfo.PostcraniaTrauma1 : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Cirbra Orbitala: @(!System.String.IsNullOrEmpty(Model.BurialInfo.CribraOrbitala) ? Model.BurialInfo.CribraOrbitala : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Metopic Suture: @(!System.String.IsNullOrEmpty(Model.BurialInfo.MetopicSuture) ? Model.BurialInfo.MetopicSuture : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Button Osteoma: @(!System.String.IsNullOrEmpty(Model.BurialInfo.ButtonOsteoma) ? Model.BurialInfo.ButtonOsteoma : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Temperomandibular Joint Osteoarthritis: @(!System.String.IsNullOrEmpty(Model.BurialInfo.TemporalMandibularJointOsteoarthritisTmjOa) ? Model.BurialInfo.TemporalMandibularJointOsteoarthritisTmjOa : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Osteology Unknown Comment: @(!System.String.IsNullOrEmpty(Model.BurialInfo.OsteologyUnknownComment) ? Model.BurialInfo.OsteologyUnknownComment : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Porotic Hyperostosis: @(!System.String.IsNullOrEmpty(Model.BurialInfo.PoroticHyperostosis) ? Model.BurialInfo.PoroticHyperostosis : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Porotic Hyperostosis Location: @(!System.String.IsNullOrEmpty(Model.BurialInfo.PoroticHyperostosisLocations) ? Model.BurialInfo.PoroticHyperostosisLocations : "Unknown")</p>
+                </li>
+                <li>
+                    <p>Body Analysis: @(!System.String.IsNullOrEmpty(Model.BurialInfo.BodyAnalysis) ? Model.BurialInfo.BodyAnalysis : "Not recorded")</p>
+                </li>
+                <li>
+                    <p>Linear Hypoplasia Enamel: @(!System.String.IsNullOrEmpty(Model.BurialInfo.LinearHypoplasiaEnamel) ? Model.BurialInfo.LinearHypoplasiaEnamel : "Not recorded")</p>
+                </li>
+                <li>
+                    <p>Face Bundle: @(!System.String.IsNullOrEmpty(Model.BurialInfo.FaceBundle) ? Model.BurialInfo.FaceBundle : "Not recorded")</p>
+                </li>
+                <li>
+                    <p>Goods: @(!System.String.IsNullOrEmpty(Model.BurialInfo.Goods) ? Model.BurialInfo.Goods : "Not recorded")</p>
+                </li>
+            }
+            </ul>
+            @if (Model.BurialInfo.BurialSituation != null)
+            {
+                <p>Burial Notes:&nbsp;@Model.BurialInfo.BurialSituation</p>
+            }
+            @if (!System.String.IsNullOrEmpty(Model.BurialInfo.BurialWrapping))
+            {
+                if (Model.BurialInfo.BurialWrapping == "W")
+                {
+                    <p>Burial Wrapping: Full or nearly full wrapping remains</p>
+                }
+                else if (Model.BurialInfo.BurialWrapping == "H")
+                {
+                    <p>Burial Wrapping: Partial wrapping remains</p>
+                }
+                else if (Model.BurialInfo.BurialWrapping == "B")
+                {
+                    <p>Burial Wrapping: Bones and&#92;or only partial remnants of wrapping remains</p>
+                }
+                else if (Model.BurialInfo.BurialWrapping == "U")
+                {
+                    <p>Burial Wrapping: Unknown</p>
+                }
+            }
+            else
+            {
+                <p>Burial Wrapping: Not Recorded</p>
+            }
+            @if (!System.String.IsNullOrEmpty(Model.BurialInfo.BurialAdultChild))
+            {
+                if (Model.BurialInfo.BurialAdultChild == "A")
+                {
+                    <p>Burial Adult Child: Adult</p>
+                }
+                else if (Model.BurialInfo.BurialAdultChild == "C")
+                {
+                    <p>Burial Adult Child: Child</p>
+                }
+            }
+            else
+            {
+                <p>Burial Adult Child: Not Recorded</p>
+            }
+            @if (Model.BurialInfo.SampleNumber != null)
+            {
+                <p>Sample Number: @Model.BurialInfo.SampleNumber</p>
+            }
+            <p>Age, Gender, and other discriptive Data</p>
+            @if (Model.BurialInfo.AgeCodeSingle != null)
+            {
+                if (Model.BurialInfo.AgeCodeSingle == "N")
+                {
+                    <p>Newborn - years 0-1</p>
+                }
+                else if (Model.BurialInfo.AgeCodeSingle == "I")
+                {
+                    <p>Infant - years 1-3</p>
+                }
+                else if (Model.BurialInfo.AgeCodeSingle == "C")
+                {
+                    <p>Child - years 3-15</p>
+                }
+                else if (Model.BurialInfo.AgeCodeSingle == "A")
+                {
+                    <p>Adult - year 15+</p>
+                }
+                else
+                {
+                    <p>Unknown</p>
+                }
+            }
+            @if (Model.BurialInfo.Burialageatdeath != null && System.String.IsNullOrEmpty(Model.BurialInfo.Burialageatdeath))
+            {
+                @if (Model.BurialInfo.Burialageatdeath == "U")
+                {
+                    <p>Unknown</p>
+                }
+                else
+                {
+                    <p>@Model.BurialInfo.Burialageatdeath</p>
+                }
+            }
+            @if (Model.BurialInfo.Burialagemethod != null && System.String.IsNullOrEmpty(Model.BurialInfo.Burialagemethod))
+            {
+                <p>@Model.BurialInfo.Burialagemethod</p>
+            }
+            @if (Model.BurialInfo.GenderGe != null)
+            {
+                <p>Gender GE: @Model.BurialInfo.GenderGe</p>
+            }
+            @if (Model.BurialInfo.Burialgendermethod != null)
+            {
+                if (Model.BurialInfo.Burialgendermethod == "U")
+                {
+                    <p>Unknown</p>
+                }
+            }
+            @if (Model.BurialInfo.Burialgendermethod != null)
+            {
+                <p>@Model.BurialInfo.Burialgendermethod</p>
+            }
+            @if (Model.BurialInfo.GeFunctionTotal != null)
+            {
+                <p>@Model.BurialInfo.GeFunctionTotal</p>
+            }
+            @if (Model.BurialInfo.GenderBodyCol != null && !System.String.IsNullOrEmpty(Model.BurialInfo.GenderBodyCol))
+            {
+                <p>@Model.BurialInfo.GenderBodyCol</p>
+            }
+            @if (Model.BurialInfo.HairColorCode != null)
+            {
+                <h2>Hair Color</h2>
+                if (Model.BurialInfo.HairColorCode == "U")
+                {
+                    <p>Unknown</p>
+                }
+                else if (Model.BurialInfo.HairColorCode == "B")
+                {
+                    <p>Brown (dark, regular, or light</p>
+                }
+                else if (Model.BurialInfo.HairColorCode == "K")
+                {
+                    <p>Black</p>
+                }
+                else if (Model.BurialInfo.HairColorCode == "A")
+                {
+                    <p>Brown-red</p>
+                }
+                else if (Model.BurialInfo.HairColorCode == "R")
+                {
+                    <p>Red/Red BI</p>
+                }
+                else if (Model.BurialInfo.HairColorCode == "D")
+                {
+                    <p>Blonde</p>
+                }
+            }
+
+            <h1>Field Book Data</h1>
+            @if (System.String.IsNullOrEmpty(Model.BurialInfo.FieldBook) && System.String.IsNullOrEmpty(Model.BurialInfo.FieldBookPageNumber))
+            {
+                <p>No data recorded</p>
+            }
+            else
+            {
+                <p>Field Book: @(!System.String.IsNullOrEmpty(Model.BurialInfo.FieldBook) ? Model.BurialInfo.FieldBook : "Not recorded")</p>
+                <p>Page Number: @(!System.String.IsNullOrEmpty(Model.BurialInfo.FieldBookPageNumber) ? Model.BurialInfo.FieldBookPageNumber : "Not recorded")</p>
+            }
+            <h1>Initialing</h1>
+            @if (System.String.IsNullOrEmpty(Model.BurialInfo.InitialsOfDataEntryExpert) && System.String.IsNullOrEmpty(Model.BurialInfo.InitialsOfDataEntryChecker))
+            {
+                <p>No data recorded</p>
+            }
+            else
+            {
+                <p>Data Entry Expert: @(!System.String.IsNullOrEmpty(Model.BurialInfo.InitialsOfDataEntryExpert) ? Model.BurialInfo.InitialsOfDataEntryExpert : "Not recorded")</p>
+                <p>Data Entry Checker: @(!System.String.IsNullOrEmpty(Model.BurialInfo.InitialsOfDataEntryChecker) ? Model.BurialInfo.InitialsOfDataEntryChecker : "Not recorded")</p>
+            }
+
+            <h1>BYU Data</h1>
+            <p>BYU Sample: @(!System.String.IsNullOrEmpty(Model.BurialInfo.ByuSample) ? Model.BurialInfo.ByuSample : "Not recorded")</p>
+            <p>Rack and Shelf: @(!System.String.IsNullOrEmpty(Model.BurialInfo.RackAndShelf) ? Model.BurialInfo.RackAndShelf : "Not recorded")</p>
+
+            @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+            {
+                <a asp-controller="MainTbls" asp-action="Edit" asp-route-id="@Model.BurialInfo.BurialId">Edit General Data</a>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-controller="MainTbls" asp-action="Delete" asp-route-id="@Model.BurialInfo.BurialId">Delete General Data</a>
+            }
+        </div>
+
+    <div>
+        <h1 class="display-3">Bone Information</h1>
+        @if (Model.BonesInfo != null)
+        {
+            <div>
+                <p>Basilar Structure: @(!System.String.IsNullOrEmpty(Model.BonesInfo.BasilarSuture) ? Model.BonesInfo.BasilarSuture : "Not recorded")</p>
+                <p>Ventral Arc: @(Model.BonesInfo.VentralArc)</p>
+                <p>Subpubic Angle: @(Model.BonesInfo.SubpubicAngle)</p>
+                <p>Sciatic Notch: @(Model.BonesInfo.SciaticNotch)</p>
+                <p>Pubic Bone: @(Model.BonesInfo.PubicBone)</p>
+                <p>Preaur Sulcus: @(Model.BonesInfo.PreaurSulcus)</p>
+                <p>Medial IP Ramus: @(Model.BonesInfo.MedialIpRamus)</p>
+                <p>Dorsal Pitting: @(Model.BonesInfo.DorsalPitting)</p>
+                <p>Foreman Magnum: @(!System.String.IsNullOrEmpty(Model.BonesInfo.ForemanMagnum) ? Model.BonesInfo.ForemanMagnum : "Not recorded")<p>
+                <p>Femur Head: @(Model.BonesInfo.FemurHead)</p>
+                <p>Humerus Head: @(Model.BonesInfo.HumerusHead)</p>
+                <p>Osteophytosis: @(!System.String.IsNullOrEmpty(Model.BonesInfo.Osteophytosis) ? Model.BonesInfo.Osteophytosis : "Not recorded")<p>
+                <p>Pubic Symphysis: @(!System.String.IsNullOrEmpty(Model.BonesInfo.PubicSymphysis) ? Model.BonesInfo.PubicSymphysis : "Not recorded")<p>
+                <p>Bone Length: @(!System.String.IsNullOrEmpty(Model.BonesInfo.BoneLength) ? Model.BonesInfo.BoneLength : "Not recorded")<p>
+                <p>Medial Clavicle: @(!System.String.IsNullOrEmpty(Model.BonesInfo.MedialClavicle) ? Model.BonesInfo.MedialClavicle : "Not recorded")<p>
+                <p>Iliac Crest: @(!System.String.IsNullOrEmpty(Model.BonesInfo.IliacCrest) ? Model.BonesInfo.IliacCrest : "Not recorded")<p>
+                <p>Femur Diameter: @(!System.String.IsNullOrEmpty(Model.BonesInfo.FemurDiameter) ? Model.BonesInfo.FemurDiameter : "Not recorded")<p>
+                <p>Humerus: @(!System.String.IsNullOrEmpty(Model.BonesInfo.Humerus) ? Model.BonesInfo.Humerus : "Not recorded")<p>
+                <p>Femur Length: @(Model.BonesInfo.FemurLength)</p>
+                <p>Humerus Length: @(Model.BonesInfo.HumerusLength)</p>
+                <p>Robust: @(Model.BonesInfo.Robust)</p>
+                <p>Supraorbital Ridges: @(Model.BonesInfo.SupraorbitalRidges)</p>
+                <p>Orbit Edge: @(Model.BonesInfo.OrbitEdge)</p>
+                <p>Parietal Bossing: @(Model.BonesInfo.ParietalBossing)</p>
+                <p>Gonian: @(Model.BonesInfo.Gonian)</p>
+                <p>Nuchal Crest: @(Model.BonesInfo.NuchalCrest)</p>
+                <p>Zygomatic Crest: @(Model.BonesInfo.ZygomaticCrest)</p>
+                <p>Cranial Suture: @(!System.String.IsNullOrEmpty(Model.BonesInfo.CranialSuture) ? Model.BonesInfo.CranialSuture : "Not recorded")<p>
+                <p>Max Cranial Length: @(Model.BonesInfo.MaximumCranialLength)</p>
+                <p>Max Cranial Breadth: @(Model.BonesInfo.MaximumCranialBreadth)</p>
+                <p>Basion Bregma Height: @(Model.BonesInfo.BasionBregmaHeight)</p>
+                <p>Basion Nasion: @(Model.BonesInfo.BasionNasion)</p>
+                <p>Basion Prosthion Length: @(Model.BonesInfo.BasionProsthionLength)</p>
+                <p>Nasion Prosthion: @(Model.BonesInfo.NasionProsthion)</p>
+                <p>Bizygomatic Diameter: @(Model.BonesInfo.BizygomaticDiameter)</p>
+                <p>Max Nasal Breadth: @(Model.BonesInfo.MaximumNasalBreadth)</p>
+                <p>Osteology Notes: @(!System.String.IsNullOrEmpty(Model.BonesInfo.OsteologyNotes) ? Model.BonesInfo.OsteologyNotes : "Not recorded")<p>
+                <p>Burial&#92;Artifact Description: @(!System.String.IsNullOrEmpty(Model.BonesInfo.BurialArtifactDescription) ? Model.BonesInfo.BurialArtifactDescription : "Not recorded")<p>
+                <p>Buried With Artifacts: @(!System.String.IsNullOrEmpty(Model.BonesInfo.BuriedWithArtifacts) ? Model.BonesInfo.BuriedWithArtifacts : "Not recorded")<p>
+                <p>Giles Gender: @(!System.String.IsNullOrEmpty(Model.BonesInfo.GilesGender) ? Model.BonesInfo.GilesGender : "Not recorded")<p>
+                    @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-controller="Bones" asp-route-id="@Model.BonesInfo.BoneId">Edit or Add Bone Data</a>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Delete" asp-controller="Bones" asp-route-id="@Model.BonesInfo.BoneId">Delete Bone Data</a>
+                    }
+            </div>
+        }
+        else
+        {
+            @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+            {
+                <div>
+                    <h1>Enter Bone Information</h1>
+                    <a asp-action="Create" asp-controller="Bones">Add Bone Data</a>
+                </div>
+            }
+        }
+    </div>
+    <div>
+        <h1>Biological Information</h1>
+        @if (Model.BiologyInfo != null)
+        {
+            <p>Hair Taken: @(Model.BiologyInfo.HairTaken == null ? "Not recorded" : (bool)Model.BiologyInfo.HairTaken ? "Yes" : "No")</p>
+            <p>Soft Tissue Taken: @(Model.BiologyInfo.SoftTissueTaken == null ? "Not recorded" : (bool)Model.BiologyInfo.SoftTissueTaken ? "Yes" : "No")</p>
+            <p>Bone Taken: @(Model.BiologyInfo.BoneTaken == null ? "Not recorded" : (bool)Model.BiologyInfo.BoneTaken ? "Yes" : "No")</p>
+            <p>Tooth Taken: @(Model.BiologyInfo.ToothTaken == null ? "Not recorded" : (bool)Model.BiologyInfo.ToothTaken ? "Yes" : "No")</p>
+            <p>Textile Taken: @(Model.BiologyInfo.TextileTaken == null ? "Not recorded" : (bool)Model.BiologyInfo.TextileTaken ? "Yes" : "No")</p>
+            <p>Description of Taken: @(!System.String.IsNullOrEmpty(Model.BiologyInfo.DescriptionOfTaken) ? Model.BiologyInfo.DescriptionOfTaken : "Not recorded")</p>
+            <p>Artifact Found: @(Model.BiologyInfo.ArtifactFound == null ? "Not recorded" : (bool)Model.BiologyInfo.ArtifactFound ? "Yes" : "No")</p>
+            <p>Estimate Age: @Model.BiologyInfo.EstimateAge</p>
+            <p>Estimate Living Stature: @Model.BiologyInfo.EstimateLivingStature</p>
+            <p>Tooth Attrition: @(!System.String.IsNullOrEmpty(Model.BiologyInfo.ToothAttrition) ? Model.BiologyInfo.ToothAttrition : "Not recorded")</p>
+            <p>Tooth Eruption: @(!System.String.IsNullOrEmpty(Model.BiologyInfo.ToothEruption) ? Model.BiologyInfo.ToothEruption : "Not recorded")</p>
+            <p>Epiphyseal Union: @(!System.String.IsNullOrEmpty(Model.BiologyInfo.EpiphysealUnion) ? Model.BiologyInfo.EpiphysealUnion : "Not recorded")</p>
+            <p>Pathology Anomalies: @(!System.String.IsNullOrEmpty(Model.BiologyInfo.PathologyAnomalies) ? Model.BiologyInfo.PathologyAnomalies : "Not recorded")</p>
+            <p>Burial Sample Taken: @(!System.String.IsNullOrEmpty(Model.BiologyInfo.Burialsampletaken) ? Model.BiologyInfo.Burialsampletaken : "Not recorded")</p>
+            @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+            {
+                <a asp-action="Edit" asp-controller="Biology" asp-route-id="@Model.BiologyInfo.BioId">Edit or Add Biological Data</a>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Delete" asp-controller="Biology" asp-route-id="@Model.BiologyInfo.BioId">Delete Biological Data</a>
+            }
+        }
+        else
+        {
+            @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+            {
+                <div>
+                    <h1>Enter Biology Information</h1>
+                    <a asp-action="Create" asp-controller="Biology">Add Biological Data</a>
+                </div>
+            }
+        }
+    </div>
+
+        <div>
+            <h1>Samples and Carbon Dating Details</h1>
+            @if (Model.SamplesAndCarbon != null)
+            {
+                @foreach (KeyValuePair<Samples, Carbon> kvp in Model.SamplesAndCarbon)
+                {
+                    <div>
+                        <h2>Sample</h2>
+                        <p>Rack number: @(kvp.Key.Rack)</p>
+                        <p>Bag number: @(kvp.Key.Bag)</p>
+                        <p>Cluster number: @(kvp.Key.Cluster)</p>
+                        <p>Date: @(kvp.Key.Date)</p>
+                        <p>Previously Sampled: @(!System.String.IsNullOrEmpty(kvp.Key.PreviouslySampled) ? kvp.Key.PreviouslySampled : "Not Recorded")</p>
+                        <p>Notes: @(!System.String.IsNullOrEmpty(kvp.Key.Notes) ? kvp.Key.Notes : "Not Recorded")</p>
+                        <p>Initials: @(!System.String.IsNullOrEmpty(kvp.Key.Initials) ? kvp.Key.Initials : "Not Recorded")</p>
+                        @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+                        {
+                            <form asp-action="Edit" asp-controller="Samples" method="get">
+                                <input hidden value="@kvp.Key.SampleId" name="sampleId" />
+                                <input type="submit" value="Edit Sample Data" />
+                            </form>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <form asp-action="Delete" asp-controller="Samples" method="get">
+                                <input hidden value="@kvp.Key.SampleId" name="sampleId" />
+                                <input type="submit" value="Delete Sample Data" />
+                            </form>
+                        }
+                    </div>
+                    <div>
+                        <h2>Carbon Dating Inforation</h2>
+                        @if (kvp.Value != null)
+                        {
+                            <p>Rack number: @kvp.Value.Rack</p>
+                            <p>Tube number: @kvp.Value.Tube</p>
+                            <p>Description: @(!System.String.IsNullOrEmpty(kvp.Value.Description) ? kvp.Value.Description : "Not Recorded")</p>
+                            <p>Size: @kvp.Value.SizeMl ml</p>
+                            <p>C<sub>14</sub> Sample 2017: @kvp.Value.C14Sample2017</p>
+                            <p>Location: @(!System.String.IsNullOrEmpty(kvp.Value.Location) ? kvp.Value.Location : "Not Recorded")</p>
+                            <p>Question&#40;s&#41;: @(!System.String.IsNullOrEmpty(kvp.Value.QuestionS) ? kvp.Value.QuestionS : "Not Recorded")</p>
+                            <p>Unknown: @kvp.Value.Unknown</p>
+                            <p>Conventional C<sub>14</sub> Age BP: @kvp.Value.Conventional14cAgeBp</p>
+                            <p>C<sub>14</sub> Calendar Date: @kvp.Value._14cCalendarDate</p>
+                            <p>Calibrated 95&#47; Calendar Date Max: @kvp.Value.Calibrated95CalendarDateMax</p>
+                            <p>Calibrated 95&#47; Calendar Date Min: @kvp.Value.Calibrated95CalendarDateMin</p>
+                            <p>Calibrated 95&#47; Calendar Date Span: @kvp.Value.Calibrated95CalendarDateSpan</p>
+                            <p>Calibrated 95&#47; Calendar Date Avg: @kvp.Value.Calibrated95CalendarDateAvg</p>
+                            <p>Category: @(!System.String.IsNullOrEmpty(kvp.Value.Category) ? kvp.Value.Category : "Not Recorded")</p>
+                            <p>Notes: @(!System.String.IsNullOrEmpty(kvp.Value.Notes) ? kvp.Value.Notes : "Not Recorded")</p>
+                            @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Edit" asp-controller="Carbon" asp-route-id="@kvp.Key.SampleId">Edit or Add Sample Data</a>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Delete" asp-controller="Carbon" asp-route-id="@kvp.Key.SampleId">Delete Sample Data</a>
+                            }
+                        }
+                        else
+                        {
+                            <p>No carbon dating has been performed on this sample</p>
+                            @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+                            {
+                                <form asp-action="Create" asp-controller="Carbons" method="get">
+                                    <input hidden value="@kvp.Key.SampleId" name="sampleId" />
+                                    <input type="submit" value="Add Carbon Dating Data" />
+                                </form>
+                            }
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No samples have been taken from this specimen</p>
+            }
+        </div>
+        <div>
+            @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+            {
+                @*<a asp-action="Create" asp-controller="Samples" asp-route-id="@Model.BurialInfo.BurialId">Add Sample Data</a>*@
+        <form asp-action="Create" asp-controller="Samples" method="get">
+            <input hidden value="@Model.BurialInfo.BurialId" name="burialId" />
+            <input type="submit" value="Add Sample Data" />
+        </form>
+        }
+    </div>
+    </div>

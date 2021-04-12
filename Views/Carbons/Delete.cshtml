@@ -1,0 +1,129 @@
+﻿@model Carbon
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Carbon</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rack)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rack)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tube)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tube)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SizeMl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SizeMl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Foci)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Foci)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.C14Sample2017)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.C14Sample2017)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestionS)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QuestionS)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Unknown)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Unknown)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Conventional14cAgeBp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Conventional14cAgeBp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model._14cCalendarDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model._14cCalendarDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Calibrated95CalendarDateMax)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Calibrated95CalendarDateMax)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Calibrated95CalendarDateMin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Calibrated95CalendarDateMin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Calibrated95CalendarDateSpan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Calibrated95CalendarDateSpan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Calibrated95CalendarDateAvg)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Calibrated95CalendarDateAvg)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sample)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sample.SampleId)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CarbonId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
